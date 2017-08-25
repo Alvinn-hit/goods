@@ -35,7 +35,8 @@ public class ClassLevelSettingController {
 
     @RequestMapping(value = "/classlevel/list", method = {RequestMethod.POST})
     @ResponseBody
-    public JsonResponse listClassLevel(@RequestBody Page page){
+    public JsonResponse listClassLevel(){
+        Page page = new Page();
         page.setOrgId(ContextUtils.getLoginUserDetail().getOrgId());
         List<ClassLevel> classLevelList = classLevelSettingService.listClassLevel(page);
         int count = classLevelList.size();

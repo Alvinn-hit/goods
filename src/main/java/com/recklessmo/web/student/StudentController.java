@@ -107,7 +107,7 @@ public class StudentController {
      *
      * 更新信息
      *
-     * @param studentAllInfo
+     * @param studentInfo
      * @return
      */
     @ResponseBody

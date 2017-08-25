@@ -17,7 +17,35 @@
             , '10班', '11班', '12班', '13班', '14班', '15班', '16班', '17班', '18班', '19班',
              '20班', '21班', '22班', '23班', '24班', '25班', '26班', '27班', '28班', '29班', '30班'];
         $scope.classTypeList = ['未分科', '文科班', '理科班'];
-        $scope.classLevelList = ['重点班', '普通班'];
+        $scope.classLevelList = [];
+
+
+        function init() {
+            blockUI.start();
+            SettingService.listClassLevel().success(function (data) {
+                blockUI.stop();
+                if (data.status == 200) {
+                    var result = data.data;
+                    $scope.classLevelList = [];
+                    _.forEach(result, function(item){
+                        $scope.classLevelList.push(item.levelName);
+                    });                    /*DicService.loadJobList({page:1, count:1000}).success(function (data) {
+                     if (data.status == 200) {
+                     $scope.jobList = data.data;
+                     activate();
+                     }
+                     }).error(function () {
+                     SweetAlert.error("网络问题, 请稍后重试!");
+                     });*/
+                }
+            }).error(function () {
+                block.stop();
+                SweetAlert.error("网络问题, 请稍后重试!");
+            });
+        }
+
+
+        init();
 
         activate();
 

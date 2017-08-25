@@ -12,7 +12,7 @@
         <include refid="examColumns"/>
         from exam
         <where>
-            deleted = 0
+            deleted = 0 and org_id = #{orgId}
             <if test="0 != gradeId">
                 and grade_id = #{gradeId}
             </if>
@@ -33,7 +33,7 @@
         select count(1)
         from exam
         <where>
-            deleted = 0
+            deleted = 0 and org_id = #{orgId}
             <if test="0 != gradeId">
                 and grade_id = #{gradeId}
             </if>
